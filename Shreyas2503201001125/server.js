@@ -53,6 +53,10 @@ app.get('/api/students/:id', (req, res) => {
   res.status(200).json(student);
 });
 
+app.post('/api/students', (req, res) => {
+  res.send("POST /api/students skeleton");
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
