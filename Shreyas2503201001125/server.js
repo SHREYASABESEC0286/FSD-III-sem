@@ -60,7 +60,24 @@ app.post('/api/students', (req, res) => {
     return res.status(400).json({ message: "All fields are required: rollNumber, name, branch, semester, email" });
   }
 
-  res.send("Input validated");
+  let newId = 201;
+  for (let i = 0; i < students.length; i++) {
+    if (students[i].id >= newId) {
+      newId = students[i].id + 1;
+    }
+  }
+
+  const newStudent = {
+    id: newId,
+    rollNumber: rollNumber,
+    name: name,
+    branch: branch,
+    semester: Number(semester),
+    email: email
+  };
+
+  students.push(newStudent);
+  res.status(201).json(newStudent);
 });
 
 app.listen(PORT, () => {
