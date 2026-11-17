@@ -54,7 +54,13 @@ app.get('/api/students/:id', (req, res) => {
 });
 
 app.post('/api/students', (req, res) => {
-  res.send("POST /api/students skeleton");
+  const { rollNumber, name, branch, semester, email } = req.body;
+
+  if (!rollNumber || !name || !branch || !semester || !email) {
+    return res.status(400).json({ message: "All fields are required: rollNumber, name, branch, semester, email" });
+  }
+
+  res.send("Input validated");
 });
 
 app.listen(PORT, () => {
