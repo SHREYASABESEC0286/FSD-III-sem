@@ -80,6 +80,25 @@ app.post('/api/students', (req, res) => {
   res.status(201).json(newStudent);
 });
 
+app.put('/api/students/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = students.findIndex(s => s.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: "Student not found" });
+  }
+
+  const { rollNumber, name, branch, semester, email } = req.body;
+
+  if (rollNumber) students[index].rollNumber = rollNumber;
+  if (name) students[index].name = name;
+  if (branch) students[index].branch = branch;
+  if (semester) students[index].semester = Number(semester);
+  if (email) students[index].email = email;
+
+  res.status(200).json(students[index]);
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
