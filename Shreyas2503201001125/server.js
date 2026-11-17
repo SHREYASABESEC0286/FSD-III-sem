@@ -35,6 +35,15 @@ app.get('/api/students', (req, res) => {
   res.status(200).json(students);
 });
 
+app.get('/api/students/filter', (req, res) => {
+  const branch = req.query.branch;
+  if (!branch) {
+    return res.status(200).json(students);
+  }
+  const result = students.filter(student => student.branch.toLowerCase() === branch.toLowerCase());
+  res.status(200).json(result);
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
