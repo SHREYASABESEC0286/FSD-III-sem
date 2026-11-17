@@ -1,0 +1,12 @@
+{
+  "name": "shreyas2503201001125",
+  "version": "1.0.0",
+  "description": "Student Record Management REST API - Mid-Term Practical Assessment (SET B)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Shreyas",
+  "license": "ISC"
+}
