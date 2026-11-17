@@ -99,6 +99,18 @@ app.put('/api/students/:id', (req, res) => {
   res.status(200).json(students[index]);
 });
 
+app.delete('/api/students/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = students.findIndex(s => s.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: "Student not found" });
+  }
+
+  students.splice(index, 1);
+  res.status(200).json({ message: "Student deleted successfully" });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
