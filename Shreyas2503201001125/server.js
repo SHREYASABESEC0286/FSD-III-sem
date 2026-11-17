@@ -44,6 +44,15 @@ app.get('/api/students/filter', (req, res) => {
   res.status(200).json(result);
 });
 
+app.get('/api/students/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const student = students.find(s => s.id === id);
+  if (!student) {
+    return res.status(404).json({ message: "Student not found" });
+  }
+  res.status(200).json(student);
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
